@@ -1,0 +1,31 @@
+app:
+  image: registry.gitlab.com/izobretatel777/hacker-suitcases:master
+  service:
+    type: ClusterIP
+    port: 8082
+
+  env:
+    - name: SPRING_DATASOURCE_URL
+      value: jdbc:mysql://hacker-suitcases-mysql:3306/hacker-suitcase-db
+    - name: SPRING_DATASOURCE_USERNAME 
+      value: website-user
+    - name: SPRING_DATASOURCE_PASSWORD
+      value: db12345678
+
+
+mysql:
+  image: mysql:latest
+  service:
+    type: ClusterIP
+    port: 3306
+
+  env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: db12345678
+    - name: MYSQL_DATABASE
+      value: hacker-suitcase-db
+    - name: MYSQL_USER
+      value: website-user
+    - name: MYSQL_PASSWORD
+      value: db12345678
+
